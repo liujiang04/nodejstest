@@ -1,5 +1,5 @@
 .idea/*
 *.txt
-*.json
+
 *.png
 webTest/node_modules/*
