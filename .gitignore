@@ -3,3 +3,5 @@
 
 *.png
 webTest/node_modules/*
+*.db
+*.sql
