@@ -5,37 +5,28 @@ let fs = require("fs")
 let dbDame = "user.db"
 let tb_use = "user"
 
-
-
-'  tableSql = \'\'\'CREATE TABLE IF NOT EXISTS USER\n' +
-'       (ID INT PRIMARY KEY     NOT NULL,\n' +
-'       NAME           TEXT    NOT NULL,\n' +
-'       AGE            INT     NOT NULL,\n' +
-'       ADDRESS        CHAR(50),\n' +
-'       SALARY         REAL);\'\'\''
-
 let table = fs.readFileSync('tools/sqlite/daily_player_2019_01_13.sql', 'utf-8');
 //console.log(table)
-let data = fs.readFileSync('tools/sqlite/daily_player_2019_01_13_t.sql', 'utf-8');
-//console.log(data)
+
 var db = new sqlite3.Database('1.db', function () {
-    //sql 必须 一条 一条的 执行
-    db.run(table,function () {//'drop table if exists Abouttab;'
-        db.run(
-            'create table if not exists Abouttab(\n' +
-            '  Id integer primary key autoincrement,  \n' +
-            '  Info text null,  \n' +
-            '  Lan integer \n' +
-            ')', function (err) {
-                //db.run('drop table if exists Abouttab;' ,function () {
-                    db.all("select * from Abouttab", function (err, res) {
-                            if (!err)
-                                console.log(JSON.stringify(res));
-                            else
-                                console.log(err);
-                        });
-               // })
-            });
+    //exec 执行多条 语句
+    //run  执行 一条 语句
+    db.exec(table,function () {//'drop table if exists Abouttab;'
+        // db.run(
+        //     'create table if not exists Abouttab(\n' +
+        //     '  Id integer primary key autoincrement,  \n' +
+        //     '  Info text null,  \n' +
+        //     '  Lan integer \n' +
+        //     ')', function (err) {
+        //         //db.run('drop table if exists Abouttab;' ,function () {
+        //             db.all("select * from Abouttab", function (err, res) {
+        //                     if (!err)
+        //                         console.log(JSON.stringify(res));
+        //                     else
+        //                         console.log(err);
+        //                 });
+        //        // })
+        //     });
     })
 
 
