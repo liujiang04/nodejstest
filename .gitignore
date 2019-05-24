@@ -5,3 +5,5 @@
 webTest/node_modules/*
 *.db
 *.sql
+node_modules/*
+package-lock.json
